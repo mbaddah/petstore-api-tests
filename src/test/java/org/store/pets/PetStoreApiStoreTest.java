@@ -4,11 +4,11 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PetStoreApiPetTest {
+public class PetStoreApiStoreTest {
 
     @BeforeAll
     public static void setup() {
@@ -17,34 +17,25 @@ public class PetStoreApiPetTest {
     }
 
     @Test
-    public void testGetPetById() {
-        int petId = 2;
-
+    public void testGetStoreInventory() {
         given()
                 .filter(new AllureRestAssured())
-                .pathParam("petId", petId)
                 .when()
-                .get("/pet/{petId}")
-                .then()
-                .statusCode(200)
-                .body("id", equalTo(petId));
-
-//        TODO: Enable this assertion later
-//                .body(matchesJsonSchemaInClasspath("pet-schema.json")); // Validate against JSON Schema
-
-    }
-
-    @Test
-    public void testGetPetByStatus() {
-        String status = "available";
-
-        given()
-                .filter(new AllureRestAssured())
-                .queryParam("status", status)
-                .when()
-                .get("/pet/findByStatus")
+                .get("/store/inventory")
                 .then()
                 .statusCode(200);
     }
 
+    @Test
+    public void testGetStoreOrderById() {
+        int orderId = 3;
+
+        given()
+                .filter(new AllureRestAssured())
+                .pathParam("orderId", orderId)
+                .when()
+                .get("/store/order/{orderId}")
+                .then()
+                .statusCode(200);
+    }
 }
