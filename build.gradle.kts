@@ -2,8 +2,13 @@
 plugins {
     id("java")
     id("io.qameta.allure") version "2.11.2"
+    id("com.diffplug.spotless") version "7.0.0.BETA2"
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 group = "org.example"
 version = "1.0-SNAPSHOT"
@@ -32,6 +37,12 @@ tasks.test {
     reports {
         junitXml.required.set(true)
         html.required.set(true)
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat()
     }
 }
 
