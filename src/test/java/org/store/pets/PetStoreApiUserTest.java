@@ -9,26 +9,30 @@ import org.store.pets.util.ConfigProperties;
 
 import static io.restassured.RestAssured.given;
 
-public class PetStoreApiUserTest extends ConfigProperties  {
+public class PetStoreApiUserTest extends ConfigProperties {
+
+    private int userId = 1;
+    private String username = "jDoe01";
+    private String password = "pass1";
+
 
     @Test
     public void testCreateUserList() {
-        String userJson =  """
-            [
-                {
-                    "id": 1,
-                    "username": "jDoe01",
-                    "firstName": "John",
-                    "lastName": "Doe",
-                    "email": "john.doe@example.com",
-                    "password": "pass1",
-                    "phone": "1234567890",
-                    "userStatus" : 0
-                }
-            ]""";
+        String userJson = String.format("""
+                [
+                    {
+                        "id": %d,
+                        "username": %s,
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "email": "john.doe@example.com",
+                        "password": "pass1",
+                        "phone": "1234567890",
+                        "userStatus" : 0
+                    }
+                ]""", userId, username);
 
         given()
-                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .body(userJson)
                 .when()
@@ -36,12 +40,12 @@ public class PetStoreApiUserTest extends ConfigProperties  {
                 .then()
                 .statusCode(200);
     }
+
     @Test
     public void testGetUserByUsername() {
-        String username = "jDoe01";
+//        String username = "jDoe01";
 
         given()
-                .filter(new AllureRestAssured())
                 .pathParam("username", username)
                 .when()
                 .get("/user/{username}")
@@ -51,11 +55,10 @@ public class PetStoreApiUserTest extends ConfigProperties  {
 
     @Test
     public void testUserLogin() {
-        String username = "jDoe01";
-        String password = "pass1";
+//        String username = "jDoe01";
+//        String password = "pass1";
 
         given()
-                .filter(new AllureRestAssured())
                 .queryParam("username", username)
                 .queryParam("password", password)
                 .when()
@@ -67,7 +70,6 @@ public class PetStoreApiUserTest extends ConfigProperties  {
     @Test
     public void testUserLogout() {
         given()
-                .filter(new AllureRestAssured())
                 .when()
                 .get("/user/logout")
                 .then()

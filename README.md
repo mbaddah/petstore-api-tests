@@ -22,6 +22,7 @@ To do:
 - [x] Create automated tests for the Petstore API
 - [x] Report bugs with severity and priorities
 - [x] Add instructions to install and run the tests
+- [x] Java formatting and linting
 - [x] Create a README.md
 - [x] Create a EXERCISE-2.md
 - [x] Create a BUGREPORT-2.md

@@ -12,11 +12,73 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class PetStoreApiPetTest extends ConfigProperties {
 
+    private int petId = 2;
+
+    @Test
+    public void testAddNewPet() {
+        String petJson = String.format("""
+                {
+                    "id": %d,
+                    "category": {
+                        "id": 1,
+                        "name": "Dog"
+                    },
+                    "name": "Buddy",
+                    "photoUrls": [
+                        "https://images.dog.ceo/breeds/retriever-chesapeake/n02099849_938.jpg"
+                    ],
+                    "tags": [
+                        {
+                            "id": 1,
+                            "name": "Friendly"
+                        }
+                    ],
+                    "status": "available"
+                }""", petId);
+
+        given()
+                .contentType("application/json")
+                .body(petJson)
+                .when()
+                .post("/pet")
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void testUpdatePet() {
+        String petJson = String.format("""
+                {
+                    "id": %d,
+                    "category": {
+                        "id": 1,
+                        "name": "Dog"
+                    },
+                    "name": "Buddy",
+                    "photoUrls": [
+                        "https://images.dog.ceo/breeds/retriever-curly/n02099429_1178.jpg"
+                    ],
+                    "tags": [
+                        {
+                            "id": %d,
+                            "name": "Friendly"
+                        }
+                    ],
+                    "status": "sold"
+                }""", petId);
+
+        given()
+                .contentType("application/json")
+                .body(petJson)
+                .when()
+                .put("/pet")
+                .then()
+                .statusCode(200);
+    }
+
 
     @Test
     public void testGetPetById() {
-
-        int petId = 2;
 
         given()
                 .pathParam("petId", petId)
@@ -39,6 +101,31 @@ public class PetStoreApiPetTest extends ConfigProperties {
                 .queryParam("status", status)
                 .when()
                 .get("/pet/findByStatus")
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void testUpdatePetWithForm() {
+        String name = "Buddy";
+        String status = "sold";
+
+        given()
+                .queryParam("name", name)
+                .queryParam("status", status)
+                .when()
+                .post("/pet/{petId}", petId)
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    public void testDeletePet() {
+
+        given()
+                .pathParam("petId", petId)
+                .when()
+                .delete("/pet/{petId}")
                 .then()
                 .statusCode(200);
     }
