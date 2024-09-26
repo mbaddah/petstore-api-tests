@@ -16,16 +16,16 @@ public class PetStoreApiPetTest extends ConfigProperties {
 
     @Test
     public void testAddNewPet() {
-        String petJson = """
+        String petJson = String.format("""
                 {
-                    "id": 2,
+                    "id": %d,
                     "category": {
                         "id": 1,
                         "name": "Dog"
                     },
                     "name": "Buddy",
                     "photoUrls": [
-                        "https://www.example.com/buddy.jpg"
+                        "https://images.dog.ceo/breeds/retriever-chesapeake/n02099849_938.jpg"
                     ],
                     "tags": [
                         {
@@ -34,7 +34,7 @@ public class PetStoreApiPetTest extends ConfigProperties {
                         }
                     ],
                     "status": "available"
-                }""";
+                }""", petId);
 
         given()
                 .contentType("application/json")
@@ -47,16 +47,16 @@ public class PetStoreApiPetTest extends ConfigProperties {
 
     @Test
     public void testUpdatePet() {
-        String petJson = """
+        String petJson = String.format("""
                 {
-                    "id": 2,
+                    "id": %d,
                     "category": {
                         "id": 1,
                         "name": "Dog"
                     },
                     "name": "Buddy",
                     "photoUrls": [
-                        "https://www.example.com/buddy.jpg"
+                        "https://images.dog.ceo/breeds/retriever-curly/n02099429_1178.jpg"
                     ],
                     "tags": [
                         {
@@ -65,7 +65,7 @@ public class PetStoreApiPetTest extends ConfigProperties {
                         }
                     ],
                     "status": "sold"
-                }""";
+                }""", petId);
 
         given()
                 .contentType("application/json")
