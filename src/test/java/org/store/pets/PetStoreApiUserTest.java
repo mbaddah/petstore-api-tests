@@ -14,23 +14,22 @@ public class PetStoreApiUserTest extends ConfigProperties {
 
   @Test
   public void testCreateUserList() {
-    String userJson =
-        String.format(
-            """
-                [
-                    {
-                        "id": %d,
-                        "username": %s,
-                        "firstName": "John",
-                        "lastName": "Doe",
-                        "email": "john.doe@example.com",
-                        "password": "pass1",
-                        "phone": "1234567890",
-                        "userStatus" : 0
-                    }
-                ]""",
-            userId, username);
 
+    String userJson =
+        """
+        [
+            {
+                "id": %d,
+                "username": "%s",
+                "firstName": "John",
+                "lastName": "Doe",
+                "email": "john.doe@example.com",
+                "password": "%s",
+                "phone": "1234567890",
+                "userStatus": 0
+            }
+        ]"""
+            .formatted(userId, username, password);
     given()
         .contentType(ContentType.JSON)
         .body(userJson)
@@ -42,16 +41,11 @@ public class PetStoreApiUserTest extends ConfigProperties {
 
   @Test
   public void testGetUserByUsername() {
-    //        String username = "jDoe01";
-
     given().pathParam("username", username).when().get("/user/{username}").then().statusCode(200);
   }
 
   @Test
   public void testUserLogin() {
-    //        String username = "jDoe01";
-    //        String password = "pass1";
-
     given()
         .queryParam("username", username)
         .queryParam("password", password)
