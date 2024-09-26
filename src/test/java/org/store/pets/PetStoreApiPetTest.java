@@ -67,7 +67,7 @@ public class PetStoreApiPetTest extends ConfigProperties {
                     ],
                     "status": "sold"
                 }""",
-            petId);
+            petId, petId);
 
     given().contentType("application/json").body(petJson).when().put("/pet").then().statusCode(200);
   }
