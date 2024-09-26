@@ -9,23 +9,23 @@ import org.store.pets.util.ConfigProperties;
 
 import static io.restassured.RestAssured.given;
 
-public class PetStoreApiUserTest extends ConfigProperties  {
+public class PetStoreApiUserTest extends ConfigProperties {
 
     @Test
     public void testCreateUserList() {
-        String userJson =  """
-            [
-                {
-                    "id": 1,
-                    "username": "jDoe01",
-                    "firstName": "John",
-                    "lastName": "Doe",
-                    "email": "john.doe@example.com",
-                    "password": "pass1",
-                    "phone": "1234567890",
-                    "userStatus" : 0
-                }
-            ]""";
+        String userJson = """
+                [
+                    {
+                        "id": 1,
+                        "username": "jDoe01",
+                        "firstName": "John",
+                        "lastName": "Doe",
+                        "email": "john.doe@example.com",
+                        "password": "pass1",
+                        "phone": "1234567890",
+                        "userStatus" : 0
+                    }
+                ]""";
 
         given()
                 .filter(new AllureRestAssured())
@@ -36,6 +36,7 @@ public class PetStoreApiUserTest extends ConfigProperties  {
                 .then()
                 .statusCode(200);
     }
+
     @Test
     public void testGetUserByUsername() {
         String username = "jDoe01";
