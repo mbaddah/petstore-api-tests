@@ -11,10 +11,10 @@ The testing scope for this test plan includes functional/integration testing of 
 ## Test Environment setup
 
 The test environment for this test plan is externally hosted via [Swagger Petstore](https://petstore.swagger.io).
+
 ## Test Schedule
 
 Testing for this test plan will run between 23/09/2024 and 27/09/2024.
-
 
 ## Test Deliverables
 
@@ -22,7 +22,9 @@ The artifacts for this test plan include the framework, test cases, and reports 
 
 ## Test Cases and Test Data:
 
-See the `tests` folder for test cases and data.
+See the `tests` folder for test cases and test data.
+
+The json schema files can be extracted from `https://petstore.swagger.io/v2/swagger.json`.
 
 ## Entry and Exit Criteria
 
