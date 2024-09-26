@@ -35,10 +35,4 @@ To do:
 
 Run your tests using Gradle:
 
-- `./gradlew clean build test`
-
-Generate the Allure report:
-- `./gradlew allureReport`
-
-Serve the Allure report:
-- `./gradlew allureServe`
+- `./gradlew test`
