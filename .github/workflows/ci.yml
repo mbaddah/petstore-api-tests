@@ -32,9 +32,6 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
-        with:
-          distribution: 'adopt'
-          java-version: '17'
 
       - name: Run tests
         run: ./gradlew test
