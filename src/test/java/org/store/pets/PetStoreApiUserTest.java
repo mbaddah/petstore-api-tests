@@ -5,16 +5,11 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.store.pets.util.ConfigProperties;
 
 import static io.restassured.RestAssured.given;
 
-public class PetStoreApiUserTest {
-
-    @BeforeAll
-    public static void setup() {
-        RestAssured.baseURI = "https://petstore.swagger.io/v2";
-        RestAssured.filters(new AllureRestAssured());
-    }
+public class PetStoreApiUserTest extends ConfigProperties  {
 
     @Test
     public void testCreateUserList() {

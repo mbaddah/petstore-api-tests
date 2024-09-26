@@ -4,24 +4,21 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.store.pets.util.ConfigProperties;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PetStoreApiPetTest {
+public class PetStoreApiPetTest extends ConfigProperties {
 
-    @BeforeAll
-    public static void setup() {
-        RestAssured.baseURI = "https://petstore.swagger.io/v2";
-        RestAssured.filters(new AllureRestAssured());
-    }
 
     @Test
     public void testGetPetById() {
+
         int petId = 2;
 
         given()
-                .filter(new AllureRestAssured())
                 .pathParam("petId", petId)
                 .when()
                 .get("/pet/{petId}")
@@ -39,7 +36,6 @@ public class PetStoreApiPetTest {
         String status = "available";
 
         given()
-                .filter(new AllureRestAssured())
                 .queryParam("status", status)
                 .when()
                 .get("/pet/findByStatus")
