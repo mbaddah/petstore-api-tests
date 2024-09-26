@@ -1,6 +1,7 @@
 package org.store.pets;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.jupiter.api.Test;
@@ -81,12 +82,8 @@ public class PetStoreApiPetTest extends ConfigProperties {
         .get("/pet/{petId}")
         .then()
         .statusCode(200)
-        .body("id", equalTo(petId));
-
-    //        TODO: Enable this assertion later
-    //                .body(matchesJsonSchemaInClasspath("pet-schema.json")); // Validate against
-    // JSON Schema
-
+        .body("id", equalTo(petId))
+        .body(matchesJsonSchemaInClasspath("pet-schema.json"));
   }
 
   @Test

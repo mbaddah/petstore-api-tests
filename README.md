@@ -21,6 +21,10 @@ Run your tests using Gradle:
 
 - `./gradlew test`
 
+## Schema validation
+
+To validate schemas add your schema file in the `resources` directory and use `matchesJsonSchemaInClasspath` (see https://github.com/rest-assured/rest-assured/wiki/Usage#json-schema-validation).
+
 ## References
 
 - [RestAssured](https://rest-assured.io/)

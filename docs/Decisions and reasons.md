@@ -7,4 +7,3 @@
 - Github actions: I chose Github actions because it is a CI/CD tool that is easy to use and integrates well with Github. It is also free for public repositories, which makes it a good choice for open-source projects. I've configured it to run the tests on every push to the main branch.
 
 - JUnit: I chose JUnit because it is a popular testing framework for Java that is easy to use and has a lot of features that make it easy to write and run tests. It is also easy to integrate with other Java libraries and frameworks. I've configured it to generate reports in XML format.
-- 
