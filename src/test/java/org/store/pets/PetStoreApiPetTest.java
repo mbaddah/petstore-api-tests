@@ -20,7 +20,7 @@ public class PetStoreApiPetTest extends ConfigProperties {
                 {
                     "id": %d,
                     "category": {
-                        "id": %d,
+                        "id": 1,
                         "name": "Dog"
                     },
                     "name": "Buddy",
@@ -29,12 +29,12 @@ public class PetStoreApiPetTest extends ConfigProperties {
                     ],
                     "tags": [
                         {
-                            "id": %d,
+                            "id": 1,
                             "name": "Friendly"
                         }
                     ],
                     "status": "available"
-                }""", petId, petId, petId);
+                }""", petId);
 
         given()
                 .contentType("application/json")
