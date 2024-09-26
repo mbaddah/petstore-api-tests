@@ -11,13 +11,17 @@ import static io.restassured.RestAssured.given;
 
 public class PetStoreApiUserTest extends ConfigProperties {
 
+    private int userId = 1;
+    private String username = "jDoe01";
+
+
     @Test
     public void testCreateUserList() {
-        String userJson = """
+        String userJson = String.format("""
                 [
                     {
-                        "id": 1,
-                        "username": "jDoe01",
+                        "id": %d,
+                        "username": %s,
                         "firstName": "John",
                         "lastName": "Doe",
                         "email": "john.doe@example.com",
@@ -25,7 +29,7 @@ public class PetStoreApiUserTest extends ConfigProperties {
                         "phone": "1234567890",
                         "userStatus" : 0
                     }
-                ]""";
+                ]""", userId, username);
 
         given()
                 .filter(new AllureRestAssured())

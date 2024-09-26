@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class PetStoreApiPetTest extends ConfigProperties {
 
-    int petId = 2;
+    private int petId = 2;
 
     @Test
     public void testAddNewPet() {
@@ -20,7 +20,7 @@ public class PetStoreApiPetTest extends ConfigProperties {
                 {
                     "id": %d,
                     "category": {
-                        "id": 1,
+                        "id": %d,
                         "name": "Dog"
                     },
                     "name": "Buddy",
@@ -29,7 +29,7 @@ public class PetStoreApiPetTest extends ConfigProperties {
                     ],
                     "tags": [
                         {
-                            "id": 1,
+                            "id": %d,
                             "name": "Friendly"
                         }
                     ],
