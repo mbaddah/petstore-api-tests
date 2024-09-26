@@ -26,6 +26,9 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
     reports {
         junitXml.required.set(true)
         html.required.set(true)
