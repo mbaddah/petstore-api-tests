@@ -13,6 +13,7 @@ public class PetStoreApiUserTest extends ConfigProperties {
 
     private int userId = 1;
     private String username = "jDoe01";
+    private String password = "pass1";
 
 
     @Test
@@ -32,7 +33,6 @@ public class PetStoreApiUserTest extends ConfigProperties {
                 ]""", userId, username);
 
         given()
-                .filter(new AllureRestAssured())
                 .contentType(ContentType.JSON)
                 .body(userJson)
                 .when()
@@ -43,10 +43,9 @@ public class PetStoreApiUserTest extends ConfigProperties {
 
     @Test
     public void testGetUserByUsername() {
-        String username = "jDoe01";
+//        String username = "jDoe01";
 
         given()
-                .filter(new AllureRestAssured())
                 .pathParam("username", username)
                 .when()
                 .get("/user/{username}")
@@ -56,11 +55,10 @@ public class PetStoreApiUserTest extends ConfigProperties {
 
     @Test
     public void testUserLogin() {
-        String username = "jDoe01";
-        String password = "pass1";
+//        String username = "jDoe01";
+//        String password = "pass1";
 
         given()
-                .filter(new AllureRestAssured())
                 .queryParam("username", username)
                 .queryParam("password", password)
                 .when()
@@ -72,7 +70,6 @@ public class PetStoreApiUserTest extends ConfigProperties {
     @Test
     public void testUserLogout() {
         given()
-                .filter(new AllureRestAssured())
                 .when()
                 .get("/user/logout")
                 .then()
